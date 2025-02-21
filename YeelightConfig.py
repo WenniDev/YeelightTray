@@ -69,10 +69,9 @@ class YeelightConfig:
             self.loadTomlConfig()
 
     def getResourcePath(self, relative_path):
-        """ Récupère le bon chemin des fichiers intégrés dans l'exécutable """
-        if getattr(sys, 'frozen', False):  # Exécutable
+        if getattr(sys, 'frozen', False):
             base_path = sys._MEIPASS
-        else:  # Mode normal
+        else:
             base_path = os.path.abspath(".")
         return os.path.join(base_path, relative_path)
     

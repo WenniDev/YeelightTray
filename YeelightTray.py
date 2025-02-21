@@ -26,14 +26,14 @@ class YeelightTray:
 
     def add_bulb(self, bulb):
         if (bulb in self.bulbs):
-            raise Exception("bulb already exists")
+            raise Exception("Bulb already exists")
         
         self.bulbs.append(bulb)
         self.update_icon()
 
     def remove_bulb(self, bulb):
         if (bulb not in self.bulbs):
-            raise Exception("bulb does not exist")
+            raise Exception("Bulb does not exist")
         self.bulbs.remove(bulb)
         self.update_icon()
 
@@ -54,7 +54,7 @@ class YeelightTray:
                     bulb.toggle()                
             self.update_icon()
         except Exception as e:
-            print(f"Erreur lors du basculement de l'ampoule : {e}")
+            print(f"Error toggling the bulb : {e}")
 
     def get_current_icon(self):
         if len(self.bulbs) == 0:
@@ -64,7 +64,7 @@ class YeelightTray:
             state = self.get_room_state()
             return self.config.icons[state]
         except Exception as e:
-            print(f"Erreur lors de la mise à jour de l'icône : {e}")
+            print(f"Error updating the icon : {e}")
 
     def get_room_state(self):
         if len(self.bulbs) == 0:
@@ -74,7 +74,7 @@ class YeelightTray:
                 return "on"
             return "off"
         except Exception as e:
-            print(f"Erreur lors de la récupération de l'état de la pièce : {e}")
+            print(f"Cannot reach bulbs : {e}")
 
     def update_icon(self):
         self.app.icon = self.get_current_icon()
@@ -99,4 +99,4 @@ class YeelightTray:
             self.update_menu()
             self.app.run()
         except Exception as e:
-            print(f"Erreur lors du lancement de l'icône : {e}")
+            print(f"Error starting the app : {e}")
